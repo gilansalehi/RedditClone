@@ -1,7 +1,8 @@
 class Post < ActiveRecord::Base
 
   validates :title, presence: true
-  validates :sub, :author, presence: true
+  validates :author, presence: true
+  validates :subs, length: { minimum: 1, message: "Must select at least one sub." }
 
   belongs_to(
     :author,
@@ -10,11 +11,12 @@ class Post < ActiveRecord::Base
     primary_key: :id
   )
 
-  belongs_to(
-    :sub,
-    class_name: "Sub",
-    foreign_key: :sub_id,
-    primary_key: :id
+  has_many :post_subs
+
+  has_many(
+    :subs,
+    through: :post_subs,
+    source: :sub
   )
 
 end

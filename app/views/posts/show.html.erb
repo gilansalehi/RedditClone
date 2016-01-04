@@ -1,7 +1,7 @@
 <h1><%= @post.title %></h1>
 <a href="http://<%= @post.url %>"><%= @post.url %></a>
 <p><%= @post.content %></p>
-<%= link_to "Back to  Sub", sub_url(@post.sub_id) %>
+<%= link_to "Back to  Sub", sub_url(@post.subs.first.id) %>
 
 <br>
 <% if current_user.id == @post.author_id %>
