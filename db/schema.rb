@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104164720) do
+ActiveRecord::Schema.define(version: 20160104190547) do
 
   create_table "subs", force: :cascade do |t|
     t.string   "title",       null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160104164720) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "subs", ["mod_id"], name: "index_subs_on_mod_id", unique: true
+  add_index "subs", ["mod_id"], name: "index_subs_on_mod_id"
   add_index "subs", ["title"], name: "index_subs_on_title", unique: true
 
   create_table "users", force: :cascade do |t|

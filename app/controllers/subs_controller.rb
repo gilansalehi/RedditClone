@@ -12,6 +12,7 @@ class SubsController < ApplicationController
 
   def create
     @sub = Sub.new(sub_params)
+    @sub.mod_id = current_user.id
 
     if @sub.save
       redirect_to sub_url(@sub)
@@ -34,7 +35,7 @@ class SubsController < ApplicationController
   def update
     @sub = current_user.subs.find(params[:id])
 
-    if @sub.save
+    if @sub.update_attributes(sub_params)
       redirect_to sub_url(@sub)
     else
       flash.now[:errors] = @sub.errors.full_messages
@@ -44,13 +45,13 @@ class SubsController < ApplicationController
 
   def destroy
     @sub = current_user.subs.find(params[:id])
-    @sub.delete
+    @sub.destroy
     redirect_to subs_url
   end
 
   private
   def sub_params
-    params.require(:sub).permit(:title, :description, :mod_id)
+    params.require(:sub).permit(:title, :description)
   end
 
 end

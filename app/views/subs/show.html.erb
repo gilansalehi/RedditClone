@@ -1,0 +1,19 @@
+<h1><%= @sub.title %></h1>
+<h3><%= @sub.description %></h3>
+<%= link_to "Subs Index", subs_url %>
+
+<br>
+<% if current_user.id == @sub.mod_id %>
+<form action="<%= edit_sub_url(@sub) %>" method="get">
+  <%= auth_token %>
+
+  <input type="submit" value="Edit Sub">
+</form>
+
+  <form action="<%= sub_url(@sub) %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <%= auth_token %>
+
+    <input type="submit" value="Delete Sub">
+  </form>
+<% end %>

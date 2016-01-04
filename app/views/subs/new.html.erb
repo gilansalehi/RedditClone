@@ -1,0 +1,22 @@
+<h1>New Sub</h1>
+
+<% unless flash.now[:errors].nil? %>
+  <% flash.now[:errors].each do |error| %>
+    <%= error %><br>
+  <% end %>
+<% end %>
+
+<form action="<%= subs_url %>" method="post">
+  <%= auth_token %>
+
+  <label for="title">Title</label><br>
+  <input id="title" type="text" name="sub[title]" value="">
+  <br>
+
+  <label for="description">Description</label><br>
+  <textarea id="description" name="sub[description]" rows="8" cols="40">
+  </textarea>
+  <br>
+
+  <input type="submit" value="Create New Sub">
+</form>
