@@ -1,0 +1,30 @@
+<h1>Edit Post</h1>
+
+<% unless flash.now[:errors].nil? %>
+  <% flash.now[:errors].each do |error| %>
+    <%= error %><br>
+  <% end %>
+<% end %>
+
+<form action="<%= post_url(@post) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= auth_token %>
+  <input type="hidden" name="post[sub_id]" value="<%= @post.sub_id %>">
+
+  <label for="title">Title</label><br>
+  <input id="title" type="text" name="post[title]" value="<%= @post.title %>">
+  <br>
+
+  <label for="url">Url</label><br>
+  <input id="url" type="text" name="post[url]" value="<%= @post.url %>">
+  <br>
+
+  <label for="content">Content</label><br>
+  <textarea
+    id="content"
+    name="post[content]"
+    rows="8" cols="40"><%= @post.content %></textarea>
+  <br>
+
+  <input type="submit" value="Edit Post">
+</form>

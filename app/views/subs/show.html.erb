@@ -1,6 +1,13 @@
 <h1><%= @sub.title %></h1>
 <h3><%= @sub.description %></h3>
-<%= link_to "Subs Index", subs_url %>
+<%= link_to "Subs Index", subs_url %><br>
+<%= link_to "Add Post", new_sub_post_url(@sub.id) %>
+
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li><a href="<%= post_url(post.id) %>"><%= post.title %></a></li>
+  <% end %>
+</ul>
 
 <br>
 <% if current_user.id == @sub.mod_id %>

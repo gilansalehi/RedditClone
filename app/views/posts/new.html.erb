@@ -1,0 +1,27 @@
+<h1>New Post</h1>
+
+<% unless flash.now[:errors].nil? %>
+  <% flash.now[:errors].each do |error| %>
+    <%= error %><br>
+  <% end %>
+<% end %>
+
+<form action="<%= posts_url %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="post[sub_id]" value="<%= @post.sub_id %>">
+
+  <label for="title">Title</label><br>
+  <input id="title" type="text" name="post[title]" value="">
+  <br>
+
+  <label for="url">Url</label><br>
+  <input id="url" type="text" name="post[url]" value="">
+  <br>
+
+  <label for="content">Content</label><br>
+  <textarea id="content" name="post[content]" rows="8" cols="40">
+  </textarea>
+  <br>
+
+  <input type="submit" value="Create New Post">
+</form>
